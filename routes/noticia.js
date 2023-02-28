@@ -4,9 +4,9 @@ var router = express.Router();
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
 
-router.get("/", function (req, res, next) {
+router.get("/", loginUser, function (req, res, next) {
   res.render("admin");
 });
-router.post("/", asyncHandler(noticiaController));
+router.post("/", loginUser, asyncHandler(noticiaController));
 
 module.exports = router;

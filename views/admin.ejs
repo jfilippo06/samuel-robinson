@@ -93,9 +93,11 @@
 			<div class="container">
 				<div class="people-info-wrap">
 					<h2>Noticias</h2>
-					<form>
-						<input type="text" placeholder="Titulo" class="input- subject">
-						<textarea name="" class="input-" placeholder="Escribir noticia"></textarea>
+					<%- include('message/alert-h1') %>
+					<%- include('message/success-h1') %>	
+					<form action="/admin/noticia" method="post">
+						<input type="text" name="titulo" placeholder="Titulo" class="input- subject" required>
+						<textarea name="noticia" class="input-" placeholder="Escribir noticia" required></textarea>
 						<input type="submit" value="Enviar">
 					</form>
 				</div>
