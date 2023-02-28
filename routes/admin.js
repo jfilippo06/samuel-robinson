@@ -1,10 +1,8 @@
-var express = require("express");
-var router = express.Router();
-const asyncHandler = require("../middlewares/async-handler");
-const loginUser = require("../middlewares/loginUser");
+const express = require("express");
+const router = express.Router();
 
-router.get("/", loginUser, function (req, res, next) {
-  res.render("admin");
-});
+const noticiaRouter = require("./noticia");
+
+router.use("/noticia", noticiaRouter);
 
 module.exports = router;
