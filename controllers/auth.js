@@ -1,4 +1,4 @@
-const { registerService } = require("../services/auth");
+const { registerService, loginService } = require("../services/auth");
 
 const registerController = async (req, res) => {
   try {
@@ -10,6 +10,26 @@ const registerController = async (req, res) => {
   }
 };
 
+const loginController = async (req, res) => {
+  try {
+    const { nombre, clave } = req.body;
+    const user = await loginService(nombre, clave);
+    req.login(user, (err,) => {
+      if (err) throw new AppError('Error al crear la sesion', 403)
+      res.redirect('/admin')
+  })
+  } catch (error) {
+    res.json(error.message);
+  }
+};
+
+const logOutController = async (req, res) => {
+  req.logout(()=>{})
+  res.redirect('/')
+}
+
 module.exports = {
   registerController,
+  loginController,
+  logOutController,
 };

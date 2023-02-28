@@ -16,6 +16,20 @@ const registrarUsuario = async (email, nombre, hash) => {
   });
 };
 
+const loginUsuario = async (nombre, clave) => {
+  const user = await Usuario.findOne({
+    where: {
+      nombre: nombre,
+    },
+    paranoid: false,
+  });
+  if (!user) throw new AppError("Usuario no existe", 404);
+  if (!bcrypt.compareSync(clave, user.clave))
+    throw new AppError("Contraseña no valida", 404);
+  return user;
+};
+
 module.exports = {
   registrarUsuario,
+  loginUsuario,
 };

@@ -1,9 +1,12 @@
 const express = require("express");
-const { registerController } = require("../controllers/auth");
+const {
+  registerController,
+  loginController,
+  logOutController,
+} = require("../controllers/auth");
 const router = express.Router();
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
-const verifyAdmin = require("../middlewares/verifyAdmin");
 
 /* GET login page. */
 router.get("/login", function (req, res, next) {
@@ -11,6 +14,7 @@ router.get("/login", function (req, res, next) {
 });
 
 router.post("/register", asyncHandler(registerController));
-router.post("/login");
+router.post("/login", asyncHandler(loginController));
+router.get("/logout", loginUser, asyncHandler(logOutController));
 
 module.exports = router;
