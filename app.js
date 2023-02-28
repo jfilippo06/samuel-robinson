@@ -7,6 +7,7 @@ const session = require('express-session')
 const passport = require('passport')
 require('dotenv').config()
 const {Usuario} = require('./models')
+const flash = require('connect-flash')
 
 const indexRouter = require('./routes');
 
@@ -18,6 +19,8 @@ app.use(session({
   saveUninitialized: true,
   name: process.env.NAME,
 }))
+
+app.use(flash())
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -39,6 +42,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req,res,next) => {
+  res.locals.alert = req.flash('alert')
+  res.locals.success = req.flash('success')
+  next()
+})
 
 app.use('/', indexRouter);
 

@@ -14,19 +14,20 @@ const loginController = async (req, res) => {
   try {
     const { nombre, clave } = req.body;
     const user = await loginService(nombre, clave);
-    req.login(user, (err,) => {
-      if (err) throw new AppError('Error al crear la sesion', 403)
-      res.redirect('/admin')
-  })
+    req.login(user, (err) => {
+      if (err) throw new AppError("Error al crear la sesion", 403);
+      res.redirect("/admin");
+    });
   } catch (error) {
-    res.json(error.message);
+    req.flash("alert", { msg: error.message });
+    res.redirect("/auth/login");
   }
 };
 
 const logOutController = async (req, res) => {
-  req.logout(()=>{})
-  res.redirect('/')
-}
+  req.logout(() => {});
+  res.redirect("/");
+};
 
 module.exports = {
   registerController,
