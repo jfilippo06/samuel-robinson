@@ -3,12 +3,13 @@ const {
   paginacionService,
 } = require("../services/estudiante");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const path = require("path");
 
 const getEstudianteController = async (req, res) => {
   try {
     const data = await getEstudianteService();
     const csvWriter = createCsvWriter({
-      path: "prueba.csv",
+      path: "reporte/reporte.csv",
       header: [
         { id: "username", title: "username" },
         { id: "password", title: "password" },
@@ -18,9 +19,8 @@ const getEstudianteController = async (req, res) => {
       ],
     });
     csvWriter.writeRecords(data).then(()=>{
-      res.redirect("/admin/estudiante");
+      res.download(path.join(__dirname, `../reporte`, "reporte.csv"))
     })
-    
   } catch (error) {
     res.json(error.message);
   }
