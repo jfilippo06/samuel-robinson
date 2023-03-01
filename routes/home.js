@@ -10,4 +10,8 @@ router.get("/", function (req, res, next) {
 
 router.get("/noticia", asyncHandler(getNoticiaController));
 
+router.get("/estudiantes", function (req, res, next) {
+  res.render("estudiantes");
+});
+
 module.exports = router;

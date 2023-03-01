@@ -90,7 +90,7 @@
               <nav class="nav-desktop">
                 <ul class="menu-list">
                   <li><a href="/noticia">Noticias</a></li>
-                  <li><a href="#">Estudiantes</a></li>
+                  <li><a href="/estudiantes">Estudiantes</a></li>
                   <li>
                     <a href="http://localhost/login/index.php"
                       >Entorno Virtual Samuel Robinson</a
@@ -110,9 +110,9 @@
       </header>
 
       
-      <section class="testimonial-page center">
+      <section class="testimonial-page center" style="background-color: azure;">
         <% for(let i=0; i < data.length; i++) { %>
-        <div class="container">
+        <div class="container" style="padding-top:20px ; padding-bottom: 20px;">
           <main>
             <%- include('message/alert') %> 
             <%- include('message/success') %>
