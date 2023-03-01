@@ -109,7 +109,27 @@
         </div>
       </header>
 
-
+      <section class="contact-page-section" style="margin-top: -30px;">
+        <div class="container">
+          <div class="people-info-wrap">
+            <h2>Formulario</h2>
+            <%- include('message/alert-h1') %> 
+            <%- include('message/success-h1') %>
+            <p>Ingreso de estudiantes para el entorno virtual</p>
+            <form action="/estudiantes" method="post">
+              <span>
+              <input type="text" placeholder="Nombre de usuario" name="username" class="input- name" required style="margin-bottom: 15px;">
+              <input type="password" placeholder="Contraseña" name="password" class="input- name" required style="margin-bottom: 15px;">
+              <input type="text" placeholder="Primer nombre" name="firstname" class="input- name" required>
+              <input type="text" placeholder="Apellido" name="lastname" class="input- name" required>
+              </span>
+              <input type="email" placeholder="Correo electronico" name="email" class="input- subject" required>
+              <input type="submit" value="Registrar">
+            </form>
+          </div>
+  
+        </div>
+      </section>
 
       <footer
         class="page-footer"
