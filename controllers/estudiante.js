@@ -20,6 +20,7 @@ const getEstudianteController = async (req, res) => {
     csvWriter.writeRecords(data).then(()=>{
       res.redirect("/admin/estudiante");
     })
+    
   } catch (error) {
     res.json(error.message);
   }
