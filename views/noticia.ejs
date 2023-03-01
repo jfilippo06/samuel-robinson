@@ -109,30 +109,27 @@
         </div>
       </header>
 
+      
       <section class="testimonial-page center">
+        <% for(let i=0; i < data.length; i++) { %>
         <div class="container">
           <main>
+            <%- include('message/alert') %> 
+            <%- include('message/success') %>
             <div class="row">
-              <div class="rewiew-content">
-                <header>
-                  <h3>Very happy to find this institute!</h3>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea
-                    saepe placeat ipsam pariatur fuga nesciunt quae corporis
-                    quisquam quam voluptate explicabo at error, autem corrupti
-                    id doloremque consectetur, ipsum rem!
-                  </p>
-                </header>
-                <footer>
-                  <span
-                    ><h4>Bibek Basnet</h4>
-                    <p>Web Developer</p></span
-                  >
-                </footer>
+                <div class="rewiew-content">
+                  <header>
+                    <h3><%= data[i].titulo %></h3>
+                    <p><%= data[i].noticia %></p>
+                  </header>
+                  <footer>
+                    <p><%= data[i].usuario %></p>
+                  </footer>
+                </div>
               </div>
-            </div>
-          </main>
-        </div>
+            </main>
+          </div>
+        <% } %>
       </section>
 
       <footer
