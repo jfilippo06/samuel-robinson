@@ -124,33 +124,40 @@
       </header>
 
       <div class="page-content" style="margin-top: -60px">
-        <div class="container">
-          <article class="page-article" itemprop="blogPost">
-            <h1 itemprop="about">Top 10 collegs of 2018 in Nepal.</h1>
+        <div class="container" style="color: black ;">
+            <h1 style="font-size:30px ;">Lista de estudiantes</h1>
+            <% if (prev) { %>
+              <button><a href="<%= prev %>">Anterior</a></button>
+              
+            <% } %>
+            <% if (next) { %>
+              <button><a href="<%= next %>">Siguiente</a></button>
+            <% } %>
+            <br>
             <button><a href="/admin/estudiante/reporte">Reporte</a></button>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-              minus, voluptatibus id iure temporibus quidem aspernatur. Porro
-              molestiae voluptate libero nulla! Itaque delectus obcaecati labore
-              voluptas, incidunt omnis fugit dolor?
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              rerum veritatis iste, deleniti corrupti eligendi sapiente quas
-              facilis, sed omnis neque. Molestias id quis, nemo modi voluptates
-              optio sequi porro!
-            </p>
-          </article>
+            <br>
+            <table class="table" style="font-size: 16px;">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre de usuario</th>
+                  <th scope="col">Contraseña</th>
+                  <th scope="col">Primer nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Correo electronico</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(let i=0; i < estudiante.length; i++) { %>
+                  <tr>
+                      <td><%= estudiante[i].username %></td>
+                      <td><%= estudiante[i].password   %></td>
+                      <td><%= estudiante[i].firstname %></td>
+                      <td><%= estudiante[i].lastname %></td>
+                      <td><%= estudiante[i].email %></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
         </div>
       </div>
 
