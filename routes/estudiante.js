@@ -7,8 +7,8 @@ var router = express.Router();
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
 
-router.get("/", asyncHandler(paginacion));
+router.get("/", loginUser, asyncHandler(paginacion));
 
-router.get("/reporte", asyncHandler(getEstudianteController));
+router.get("/reporte", loginUser, asyncHandler(getEstudianteController));
 
 module.exports = router;
