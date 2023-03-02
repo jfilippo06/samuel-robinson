@@ -1,10 +1,17 @@
-const { obtenerNoticias, crearEstudiantes } = require("../DAL/home");
+const {
+  obtenerNoticias,
+  crearEstudiantes,
+  deshailitarNoticia,
+} = require("../DAL/home");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
 const getNoticiaService = async (page, size) => {
   const limit = size ? +size : 5;
   const offset = page ? page * limit : 0;
-  const { count: totalItems, rows: noticia } = await obtenerNoticias(limit, offset);
+  const { count: totalItems, rows: noticia } = await obtenerNoticias(
+    limit,
+    offset
+  );
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
   const next = nextPage("noticia", currentPage, totalPages, limit);
@@ -22,7 +29,12 @@ const estudiantesService = async (
   await crearEstudiantes(username, password, firstname, lastname, email);
 };
 
+const deshailitarNoticiaService = async (id) => {
+  await deshailitarNoticia(id);
+};
+
 module.exports = {
   getNoticiaService,
   estudiantesService,
+  deshailitarNoticiaService,
 };

@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req,res,next) => {
   res.locals.alert = req.flash('alert')
   res.locals.success = req.flash('success')
+  res.locals.user = req.user
   next()
 })
 

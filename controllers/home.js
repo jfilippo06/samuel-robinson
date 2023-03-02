@@ -1,4 +1,8 @@
-const { getNoticiaService, estudiantesService } = require("../services/home");
+const {
+  getNoticiaService,
+  estudiantesService,
+  deshailitarNoticiaService,
+} = require("../services/home");
 
 const getNoticiaController = async (req, res) => {
   try {
@@ -23,7 +27,20 @@ const estudiantesController = async (req, res) => {
   }
 };
 
+const deshailitarNoticiaController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deshailitarNoticiaService(id);
+    req.flash("success", { msg: "Noticia deshabilitada" });
+    res.redirect("/noticia");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/noticia");
+  }
+};
+
 module.exports = {
   getNoticiaController,
   estudiantesController,
+  deshailitarNoticiaController,
 };

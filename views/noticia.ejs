@@ -72,7 +72,11 @@
                 </ul>
               </div>
               <div class="login-block">
-                <a href="/auth/login">Iniciar sesión</a>
+                <% if (user) { %>
+                  <a href="/auth/logout">Cerrar sesión</a>
+                <% } else {%>
+                  <a href="/auth/login">Iniciar sesión</a>
+                <% }%>
               </div>
             </div>
           </div>
@@ -89,11 +93,14 @@
             <div class="nav-wrap">
               <nav class="nav-desktop">
                 <ul class="menu-list">
+                  <% if (user) { %>
+                    <li><a href="/admin/noticia">Admin</a></li>
+                  <% } %>
                   <li><a href="/noticia">Noticias</a></li>
                   <li><a href="/estudiantes">Estudiantes</a></li>
                   <li>
                     <a href="http://localhost/login/index.php"
-                      >Entorno Virtual Samuel Robinson</a
+                      >Entorno Virtual</a
                     >
                   </li>
                 </ul>
@@ -129,6 +136,9 @@
                   </header>
                   <footer>
                     <p><%= noticia[i].usuario %></p>
+                    <% if (user) { %>
+                    <a href="/noticia/deshabilitar/<%= noticia[i].id %>">Deshabilitar</a>
+                    <% } %>
                   </footer>
                 </div>
               </div>

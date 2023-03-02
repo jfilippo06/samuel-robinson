@@ -3,7 +3,7 @@ const { Noticia, Estudiante } = require("../models");
 const obtenerNoticias = async (limit, offset) => {
   return await Noticia.findAndCountAll({
     attributes: {
-      exclude: ["id", "createdAt", "updatedAt", "deletedAt"],
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
     },
     order: [["id", "DESC"]],
     limit: limit,
@@ -27,7 +27,16 @@ const crearEstudiantes = async (
   });
 };
 
+const deshailitarNoticia = async (id) => {
+  await Noticia.destroy({
+    where: {
+      id: id,
+    },
+  });
+}
+
 module.exports = {
   obtenerNoticias,
   crearEstudiantes,
+  deshailitarNoticia,
 };
