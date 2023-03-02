@@ -1,7 +1,8 @@
 const {
   getNoticiaService,
   estudiantesService,
-  deshailitarNoticiaService,
+  deshabilitarNoticiaService,
+  getEditarNoticiaService,
 } = require("../services/home");
 
 const getNoticiaController = async (req, res) => {
@@ -27,10 +28,10 @@ const estudiantesController = async (req, res) => {
   }
 };
 
-const deshailitarNoticiaController = async (req, res) => {
+const deshabilitarNoticiaController = async (req, res) => {
   try {
     const { id } = req.params;
-    await deshailitarNoticiaService(id);
+    await deshabilitarNoticiaService(id);
     req.flash("success", { msg: "Noticia deshabilitada" });
     res.redirect("/noticia");
   } catch (error) {
@@ -39,8 +40,20 @@ const deshailitarNoticiaController = async (req, res) => {
   }
 };
 
+const getEditarNoticiaController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await getEditarNoticiaService(id);
+    res.render("admin/editar", { data });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect(`/admin/editar/${id}`);
+  }
+};
+
 module.exports = {
   getNoticiaController,
   estudiantesController,
-  deshailitarNoticiaController,
+  deshabilitarNoticiaController,
+  getEditarNoticiaController,
 };

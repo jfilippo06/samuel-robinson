@@ -27,7 +27,7 @@ const crearEstudiantes = async (
   });
 };
 
-const deshailitarNoticia = async (id) => {
+const deshabilitarNoticia = async (id) => {
   await Noticia.destroy({
     where: {
       id: id,
@@ -35,8 +35,17 @@ const deshailitarNoticia = async (id) => {
   });
 }
 
+const getEditarNoticia = async (id) => {
+  return await Noticia.findOne({
+    where: {
+      id:id
+    }
+  })
+}
+
 module.exports = {
   obtenerNoticias,
   crearEstudiantes,
-  deshailitarNoticia,
+  deshabilitarNoticia,
+  getEditarNoticia,
 };

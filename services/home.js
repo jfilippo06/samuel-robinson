@@ -1,7 +1,8 @@
 const {
   obtenerNoticias,
   crearEstudiantes,
-  deshailitarNoticia,
+  deshabilitarNoticia,
+  getEditarNoticia,
 } = require("../DAL/home");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -29,12 +30,17 @@ const estudiantesService = async (
   await crearEstudiantes(username, password, firstname, lastname, email);
 };
 
-const deshailitarNoticiaService = async (id) => {
-  await deshailitarNoticia(id);
+const deshabilitarNoticiaService = async (id) => {
+  await deshabilitarNoticia(id);
+};
+
+const getEditarNoticiaService = async (id) => {
+  return await getEditarNoticia(id);
 };
 
 module.exports = {
   getNoticiaService,
   estudiantesService,
-  deshailitarNoticiaService,
+  deshabilitarNoticiaService,
+  getEditarNoticiaService,
 };

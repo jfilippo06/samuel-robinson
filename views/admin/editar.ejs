@@ -4,24 +4,24 @@
     <title>Admin</title>
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/all.css" />
-    <link rel="stylesheet" type="text/css" href="../css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/lightbox.css" />
-    <link rel="stylesheet" type="text/css" href="../css/flexslider.css" />
-    <link rel="stylesheet" type="text/css" href="../css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/lightbox.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/flexslider.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="../css/owl.theme.default.css"
+      href="../../css/owl.theme.default.css"
     />
-    <link rel="stylesheet" type="text/css" href="../css/jquery.rateyo.css" />
-    <link rel="stylesheet" type="text/css" href="../inner-page-style.css" />
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.rateyo.css" />
+    <link rel="stylesheet" type="text/css" href="../../inner-page-style.css" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="../images/logo.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../../images/logo.jpg" type="image/x-icon" />
   </head>
   <body>
     <div
@@ -72,11 +72,7 @@
                 </ul>
               </div>
               <div class="login-block">
-                <% if (user) { %>
-                  <a href="/auth/logout">Cerrar sesión</a>
-                <% } else {%>
-                  <a href="/auth/login">Iniciar sesión</a>
-                <% }%>
+                <a href="/auth/logout">Cerrar sesión</a>
               </div>
             </div>
           </div>
@@ -86,22 +82,19 @@
           <div class="container">
             <div style="display: flex">
               <a href="/">
-                <img src="../images/logo.jpg" alt="" style="height: 90px" />
+                <img src="../../images/logo.jpg" alt="" style="height: 90px" />
               </a>
               <h1 style="padding: 15px">Escuela Técnica Samuel Robinson</h1>
             </div>
             <div class="nav-wrap">
               <nav class="nav-desktop">
                 <ul class="menu-list">
-                  <% if (user) { %>
-                    <li><a href="/admin/noticia">Admin</a></li>
-                  <% } %>
-                  <li><a href="/noticia">Noticias</a></li>
-                  <li><a href="/estudiantes">Estudiantes</a></li>
-                  <li>
-                    <a href="http://localhost/login/index.php"
-                      >Entorno Virtual</a
-                    >
+                  <li><a href="/admin/noticia">Noticias</a></li>
+                  <li class="menu-parent">
+                    Reporte
+                    <ul class="sub-menu">
+                      <li><a href="/admin/estudiante">Estudiantes</a></li>
+                    </ul>
                   </li>
                 </ul>
               </nav>
@@ -116,36 +109,35 @@
         </div>
       </header>
 
-      <% if (prev) { %>
-        <button><a href="<%= prev %>">Anterior</a></button>
-      <% } %>
-      <% if (next) { %>
-        <button><a href="<%= next %>">Siguiente</a></button>
-      <% } %>
-      <section class="testimonial-page center" style="background-color: azure;">
-        <% for(let i=0; i < noticia.length; i++) { %>
-        <div class="container" style="padding-top:20px ; padding-bottom: 20px;">
-          <main>
-            <%- include('message/alert') %> 
-            <%- include('message/success') %>
-            <div class="row">
-                <div class="rewiew-content">
-                  <header>
-                    <h3><%= noticia[i].titulo %></h3>
-                    <p><%= noticia[i].noticia %></p>
-                  </header>
-                  <footer>
-                    <p><%= noticia[i].usuario %></p>
-                    <% if (user) { %>
-                    <!-- <a href="/noticia/editar/<%= noticia[i].id %>">Editar</a> -->
-                    <a href="/noticia/deshabilitar/<%= noticia[i].id %>">Deshabilitar</a>
-                    <% } %>
-                  </footer>
-                </div>
-              </div>
-            </main>
+      <section class="contact-page-section">
+        <div class="container">
+          <div class="people-info-wrap">
+            <h2>Noticias</h2>
+            <%- include('../message/alert-h1') %> 
+			      <%- include('../message/success-h1') %>
+            <form action="/admin/noticia" method="post">
+              <input
+                type="text"
+                name="titulo"
+                placeholder="Titulo"
+                class="input- subject"
+                value="<%= data.titulo %>"
+                required
+              />
+              <textarea
+                name="noticia"
+                class="input-"
+                value="<%= data.noticia %>"
+                placeholder="Escribir noticia"
+                required
+              ></textarea>
+              <input type="submit" value="Enviar" />
+            </form>
           </div>
-        <% } %>
+          <div class="contact-info">
+            <h2><a href="/noticia">Ver noticias</a></h2>
+          </div>
+        </div>
       </section>
 
       <footer
@@ -194,26 +186,26 @@
     </div>
     <script
       type="text/javascript"
-      src="../javascripts/jquery-3.3.1.min.js"
+      src="../../javascripts/jquery-3.3.1.min.js"
     ></script>
-    <script type="text/javascript" src="../javascripts/lightbox.js"></script>
-    <script type="text/javascript" src="../javascripts/all.js"></script>
+    <script type="text/javascript" src="../../javascripts/lightbox.js"></script>
+    <script type="text/javascript" src="../../javascripts/all.js"></script>
     <script
       type="text/javascript"
-      src="../javascripts/isotope.pkgd.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="../javascripts/owl.carousel.js"
+      src="../../javascripts/isotope.pkgd.min.js"
     ></script>
     <script
       type="text/javascript"
-      src="../javascripts/jquery.flexslider.js"
+      src="../../javascripts/owl.carousel.js"
     ></script>
     <script
       type="text/javascript"
-      src="../javascripts/jquery.rateyo.js"
+      src="../../javascripts/jquery.flexslider.js"
     ></script>
-    <script type="text/javascript" src="../javascripts/custom.js"></script>
+    <script
+      type="text/javascript"
+      src="../../javascripts/jquery.rateyo.js"
+    ></script>
+    <script type="text/javascript" src="../../javascripts/custom.js"></script>
   </body>
 </html>
