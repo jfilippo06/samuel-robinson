@@ -2,8 +2,9 @@ const { getNoticiaService, estudiantesService } = require("../services/home");
 
 const getNoticiaController = async (req, res) => {
   try {
-    const data = await getNoticiaService();
-    res.render("noticia", { data });
+    const { page, size } = req.query;
+    const { noticia, next, prev } = await getNoticiaService(page, size);
+    res.render("noticia", { noticia, next, prev });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/noticia");

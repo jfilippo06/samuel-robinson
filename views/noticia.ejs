@@ -109,9 +109,14 @@
         </div>
       </header>
 
-      
+      <% if (prev) { %>
+        <button><a href="<%= prev %>">Anterior</a></button>
+      <% } %>
+      <% if (next) { %>
+        <button><a href="<%= next %>">Siguiente</a></button>
+      <% } %>
       <section class="testimonial-page center" style="background-color: azure;">
-        <% for(let i=0; i < data.length; i++) { %>
+        <% for(let i=0; i < noticia.length; i++) { %>
         <div class="container" style="padding-top:20px ; padding-bottom: 20px;">
           <main>
             <%- include('message/alert') %> 
@@ -119,11 +124,11 @@
             <div class="row">
                 <div class="rewiew-content">
                   <header>
-                    <h3><%= data[i].titulo %></h3>
-                    <p><%= data[i].noticia %></p>
+                    <h3><%= noticia[i].titulo %></h3>
+                    <p><%= noticia[i].noticia %></p>
                   </header>
                   <footer>
-                    <p><%= data[i].usuario %></p>
+                    <p><%= noticia[i].usuario %></p>
                   </footer>
                 </div>
               </div>
