@@ -72,7 +72,11 @@
                 </ul>
               </div>
               <div class="login-block">
-                <a href="/auth/login">Iniciar sesión</a>
+                <% if (user) { %>
+                  <a href="/auth/logout">Cerrar sesión</a>
+                <% } else {%>
+                  <a href="/auth/login">Iniciar sesión</a>
+                <% }%>
               </div>
             </div>
           </div>
@@ -89,11 +93,14 @@
             <div class="nav-wrap">
               <nav class="nav-desktop">
                 <ul class="menu-list">
+                  <% if (user) { %>
+                    <li><a href="/admin/noticia">Admin</a></li>
+                  <% } %>
                   <li><a href="/noticia">Noticias</a></li>
                   <li><a href="/estudiantes">Estudiantes</a></li>
                   <li>
                     <a href="http://localhost/login/index.php"
-                      >Entorno Virtual Samuel Robinson</a
+                      >Entorno Virtual</a
                     >
                   </li>
                 </ul>
@@ -109,9 +116,14 @@
         </div>
       </header>
 
-      
+      <% if (prev) { %>
+        <button><a href="<%= prev %>">Anterior</a></button>
+      <% } %>
+      <% if (next) { %>
+        <button><a href="<%= next %>">Siguiente</a></button>
+      <% } %>
       <section class="testimonial-page center" style="background-color: azure;">
-        <% for(let i=0; i < data.length; i++) { %>
+        <% for(let i=0; i < noticia.length; i++) { %>
         <div class="container" style="padding-top:20px ; padding-bottom: 20px;">
           <main>
             <%- include('message/alert') %> 
@@ -119,11 +131,15 @@
             <div class="row">
                 <div class="rewiew-content">
                   <header>
-                    <h3><%= data[i].titulo %></h3>
-                    <p><%= data[i].noticia %></p>
+                    <h3><%= noticia[i].titulo %></h3>
+                    <p><%= noticia[i].noticia %></p>
                   </header>
                   <footer>
-                    <p><%= data[i].usuario %></p>
+                    <p><%= noticia[i].usuario %></p>
+                    <% if (user) { %>
+                    <!-- <a href="/noticia/editar/<%= noticia[i].id %>">Editar</a> -->
+                    <a href="/noticia/deshabilitar/<%= noticia[i].id %>">Deshabilitar</a>
+                    <% } %>
                   </footer>
                 </div>
               </div>

@@ -1,4 +1,8 @@
-const { getEstudiante, paginacionEstudiantes } = require("../DAL/estudiante");
+const {
+  getEstudiante,
+  paginacionEstudiantes,
+  deshabilitarEstudiante,
+} = require("../DAL/estudiante");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
 const getEstudianteService = async () => {
@@ -14,22 +18,17 @@ const paginacionService = async (page, size) => {
   );
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
-  const next = nextPage(
-    "admin/estudiante",
-    currentPage,
-    totalPages,
-    limit,
-  );
-  const prev = prevPage(
-    "admin/estudiante",
-    currentPage,
-    totalPages,
-    limit,
-  );
-  return {estudiante, next, prev}
+  const next = nextPage("admin/estudiante", currentPage, totalPages, limit);
+  const prev = prevPage("admin/estudiante", currentPage, totalPages, limit);
+  return { estudiante, next, prev };
+};
+
+const deshabilitarEstudianteService = async (id) => {
+  await deshabilitarEstudiante(id);
 };
 
 module.exports = {
   getEstudianteService,
   paginacionService,
+  deshabilitarEstudianteService,
 };

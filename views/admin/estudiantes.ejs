@@ -129,6 +129,7 @@
                   <th scope="col">Primer nombre</th>
                   <th scope="col">Apellido</th>
                   <th scope="col">Correo electronico</th>
+                  <th scope="col">Deshabilitar</th>
                 </tr>
               </thead>
               <tbody>
@@ -139,6 +140,7 @@
                       <td><%= estudiante[i].firstname %></td>
                       <td><%= estudiante[i].lastname %></td>
                       <td><%= estudiante[i].email %></td>
+                      <td><a href="/admin/estudiante/deshabilitar/<%= estudiante[i].id %>">Deshabilitar</a></td>
                   </tr>
                 <% } %>
               </tbody>
