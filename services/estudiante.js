@@ -1,4 +1,8 @@
-const { getEstudiante, paginacionEstudiantes } = require("../DAL/estudiante");
+const {
+  getEstudiante,
+  paginacionEstudiantes,
+  deshabilitarEstudiante,
+} = require("../DAL/estudiante");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
 const getEstudianteService = async () => {
@@ -19,7 +23,12 @@ const paginacionService = async (page, size) => {
   return { estudiante, next, prev };
 };
 
+const deshabilitarEstudianteService = async (id) => {
+  await deshabilitarEstudiante(id);
+};
+
 module.exports = {
   getEstudianteService,
   paginacionService,
+  deshabilitarEstudianteService,
 };

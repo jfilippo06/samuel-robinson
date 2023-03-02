@@ -1,6 +1,7 @@
 const {
   getEstudianteService,
   paginacionService,
+  deshabilitarEstudianteService,
 } = require("../services/estudiante");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const path = require("path");
@@ -18,9 +19,9 @@ const getEstudianteController = async (req, res) => {
         { id: "email", title: "email" },
       ],
     });
-    csvWriter.writeRecords(data).then(()=>{
-      res.download(path.join(__dirname, `../reporte`, "reporte.csv"))
-    })
+    csvWriter.writeRecords(data).then(() => {
+      res.download(path.join(__dirname, `../reporte`, "reporte.csv"));
+    });
   } catch (error) {
     res.json(error.message);
   }
@@ -37,7 +38,20 @@ const paginacion = async (req, res) => {
   }
 };
 
+const deshabilitarEstudianteControler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deshabilitarEstudianteService(id);
+    req.flash("susccess", { msg: "Deshabilitado correctamente" });
+    res.redirect("/admin/estudiante");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/admin/estudiante");
+  }
+};
+
 module.exports = {
   getEstudianteController,
   paginacion,
+  deshabilitarEstudianteControler,
 };

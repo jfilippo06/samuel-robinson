@@ -11,14 +11,23 @@ const getEstudiante = async () => {
 const paginacionEstudiantes = async (limit, offset) => {
   return await Estudiante.findAndCountAll({
     attributes: {
-      exclude: ["id", "createdAt", "updatedAt", "deletedAt"],
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
     },
     limit: limit,
     offset: offset,
   });
 };
 
+const deshabilitarEstudiante = async (id) => {
+  await Estudiante.destroy({
+    where: {
+      id: id,
+    },
+  });
+}
+
 module.exports = {
   getEstudiante,
   paginacionEstudiantes,
+  deshabilitarEstudiante,
 };
