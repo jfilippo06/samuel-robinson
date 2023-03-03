@@ -41,13 +41,13 @@ const deshabilitarNoticiaController = async (req, res) => {
 };
 
 const getEditarNoticiaController = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
     const data = await getEditarNoticiaService(id);
     res.render("admin/editar", { data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect(`/admin/editar/${id}`);
+    res.redirect(`/noticia/editar/${id}`);
   }
 };
 
