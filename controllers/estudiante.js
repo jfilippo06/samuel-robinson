@@ -5,6 +5,8 @@ const {
 } = require("../services/estudiante");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const path = require("path");
+const ejs = require("ejs");
+const pdf = require("html-pdf");
 
 const getEstudianteController = async (req, res) => {
   try {
@@ -50,8 +52,36 @@ const deshabilitarEstudianteControler = async (req, res) => {
   }
 };
 
+const estudiantePdf = async (req, res) => {
+  try {
+    const data = await getEstudianteService();
+    ejs.renderFile(
+      path.join(__dirname, `../views/reporte/`, "pdf.ejs"),
+      { data },
+      (err, data) => {
+        if (err) {
+          res.json(error.message);
+        } else {
+          pdf
+            .create(data)
+            .toFile(`./reporte/reporte.pdf`, (err, data) => {
+              if (err) {
+                res.json(error.message);
+              } else {
+                res.download(path.join(__dirname, `../reporte`, "reporte.pdf"));
+              }
+            });
+        }
+      }
+    );
+  } catch (error) {
+    res.json(error.message);
+  }
+};
+
 module.exports = {
   getEstudianteController,
   paginacion,
   deshabilitarEstudianteControler,
+  estudiantePdf,
 };

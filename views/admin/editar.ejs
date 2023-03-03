@@ -21,7 +21,11 @@
       href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="../../images/logo.jpg" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../../images/logo.jpg"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <div
@@ -113,9 +117,9 @@
         <div class="container">
           <div class="people-info-wrap">
             <h2>Noticias</h2>
-            <%- include('../message/alert-h1') %> 
-			      <%- include('../message/success-h1') %>
-            <form action="/admin/noticia" method="post">
+            <%- include('../message/alert-h1') %> <%-
+            include('../message/success-h1') %>
+            <form action="/admin/noticia/<%= data.id %>" method="post">
               <input
                 type="text"
                 name="titulo"
@@ -124,13 +128,15 @@
                 value="<%= data.titulo %>"
                 required
               />
-              <textarea
+              <input
+                type="text"
                 name="noticia"
-                class="input-"
+                class="input- subject"
                 value="<%= data.noticia %>"
                 placeholder="Escribir noticia"
+                style="padding-bottom: 15%"
                 required
-              ></textarea>
+              />
               <input type="submit" value="Enviar" />
             </form>
           </div>
