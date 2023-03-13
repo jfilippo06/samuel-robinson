@@ -4,24 +4,24 @@
     <title>Admin</title>
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/all.css" />
-    <link rel="stylesheet" type="text/css" href="../css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/lightbox.css" />
-    <link rel="stylesheet" type="text/css" href="../css/flexslider.css" />
-    <link rel="stylesheet" type="text/css" href="../css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/lightbox.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/flexslider.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="../css/owl.theme.default.css"
+      href="../../css/owl.theme.default.css"
     />
-    <link rel="stylesheet" type="text/css" href="../css/jquery.rateyo.css" />
-    <link rel="stylesheet" type="text/css" href="../inner-page-style.css" />
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.rateyo.css" />
+    <link rel="stylesheet" type="text/css" href="../../inner-page-style.css" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="../images/logo.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../../images/logo.jpg" type="image/x-icon" />
   </head>
   <body>
     <div
@@ -72,7 +72,7 @@
                 </ul>
               </div>
               <div class="login-block">
-                <a href="../auth/logout">Cerrar sesión</a>
+                <a href="/auth/logout">Cerrar sesión</a>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
           <div class="container">
             <div style="display: flex">
               <a href="/">
-                <img src="../images/logo.jpg" alt="" style="height: 90px" />
+                <img src="../../images/logo.jpg" alt="" style="height: 90px" />
               </a>
               <h1 style="padding: 15px">Escuela Técnica Samuel Robinson</h1>
             </div>
@@ -110,34 +110,44 @@
         </div>
       </header>
 
-      <section class="contact-page-section">
-        <div class="container">
-          <div class="people-info-wrap">
-            <h2>Noticias</h2>
-            <%- include('../message/alert-h1') %> 
-			      <%- include('../message/success-h1') %>
-            <form action="/admin/noticia" method="post">
-              <input
-                type="text"
-                name="titulo"
-                placeholder="Titulo"
-                class="input- subject"
-                required
-              />
-              <textarea
-                name="noticia"
-                class="input-"
-                placeholder="Escribir noticia"
-                required
-              ></textarea>
-              <input type="submit" value="Enviar" />
-            </form>
-          </div>
-          <div class="contact-info">
-            <h2><a href="/noticia">Ver noticias</a></h2>
-          </div>
+      <div class="page-content" style="margin-top: -60px">
+        <div class="container" style="color: black ;">
+            <h1 style="font-size:30px ;">Lista de estudiantes</h1>
+            <% if (prev) { %>
+              <button><a href="<%= prev %>">Anterior</a></button>
+            <% } %>
+            <% if (next) { %>
+              <button><a href="<%= next %>">Siguiente</a></button>
+            <% } %>
+            <br>
+            <button><a href="/admin/estudiante/pdf">Generar reporte</a></button>
+            <br>
+            <table class="table" style="font-size: 16px;">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre de usuario</th>
+                  <th scope="col">Contraseña</th>
+                  <th scope="col">Primer nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Correo electronico</th>
+                  <th scope="col">Deshabilitar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(let i=0; i < estudiante.length; i++) { %>
+                  <tr>
+                      <td><%= estudiante[i].username %></td>
+                      <td><%= estudiante[i].password   %></td>
+                      <td><%= estudiante[i].firstname %></td>
+                      <td><%= estudiante[i].lastname %></td>
+                      <td><%= estudiante[i].email %></td>
+                      <td><a href="/admin/estudiante/deshabilitar-pdf/<%= estudiante[i].id %>">Deshabilitar</a></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
         </div>
-      </section>
+      </div>
 
       <footer
         class="page-footer"
@@ -185,26 +195,26 @@
     </div>
     <script
       type="text/javascript"
-      src="../javascripts/jquery-3.3.1.min.js"
+      src="../../javascripts/jquery-3.3.1.min.js"
     ></script>
-    <script type="text/javascript" src="../javascripts/lightbox.js"></script>
-    <script type="text/javascript" src="../javascripts/all.js"></script>
+    <script type="text/javascript" src="../../javascripts/lightbox.js"></script>
+    <script type="text/javascript" src="../../javascripts/all.js"></script>
     <script
       type="text/javascript"
-      src="../javascripts/isotope.pkgd.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="../javascripts/owl.carousel.js"
+      src="../../javascripts/isotope.pkgd.min.js"
     ></script>
     <script
       type="text/javascript"
-      src="../javascripts/jquery.flexslider.js"
+      src="../../javascripts/owl.carousel.js"
     ></script>
     <script
       type="text/javascript"
-      src="../javascripts/jquery.rateyo.js"
+      src="../../javascripts/jquery.flexslider.js"
     ></script>
-    <script type="text/javascript" src="../javascripts/custom.js"></script>
+    <script
+      type="text/javascript"
+      src="../../javascripts/jquery.rateyo.js"
+    ></script>
+    <script type="text/javascript" src="../../javascripts/custom.js"></script>
   </body>
 </html>

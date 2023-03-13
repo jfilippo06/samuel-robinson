@@ -33,10 +33,21 @@ const paginacion = async (req, res) => {
   try {
     const { page, size } = req.query;
     const { estudiante, next, prev } = await paginacionService(page, size);
-    res.render("admin/estudiantes", { estudiante, next, prev });
+    res.render("admin/estudiantes-csv", { estudiante, next, prev });
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/admin/estudiante");
+    res.redirect("/admin/estudiante-csv");
+  }
+};
+
+const paginacion2 = async (req, res) => {
+  try {
+    const { page, size } = req.query;
+    const { estudiante, next, prev } = await paginacionService(page, size);
+    res.render("admin/estudiantes-pdf", { estudiante, next, prev });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/admin/estudiante-pdf");
   }
 };
 
@@ -45,10 +56,21 @@ const deshabilitarEstudianteControler = async (req, res) => {
     const { id } = req.params;
     await deshabilitarEstudianteService(id);
     req.flash("susccess", { msg: "Deshabilitado correctamente" });
-    res.redirect("/admin/estudiante");
+    res.redirect("/admin/estudiante/reporte-csv");
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/admin/estudiante");
+    res.redirect("/admin/estudiante/reporte-csv");
+  }
+};
+const deshabilitarEstudianteControler2 = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deshabilitarEstudianteService(id);
+    req.flash("susccess", { msg: "Deshabilitado correctamente" });
+    res.redirect("/admin/estudiante/reporte-pdf");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/admin/estudiante/reporte-pdf");
   }
 };
 
@@ -82,6 +104,8 @@ const estudiantePdf = async (req, res) => {
 module.exports = {
   getEstudianteController,
   paginacion,
+  paginacion2,
   deshabilitarEstudianteControler,
+  deshabilitarEstudianteControler2,
   estudiantePdf,
 };
