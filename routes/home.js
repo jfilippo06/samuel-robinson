@@ -14,7 +14,11 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 router.get("/noticia", asyncHandler(getNoticiaController));
-router.get("/noticia/editar/:id", loginUser, asyncHandler(getEditarNoticiaController));
+router.get(
+  "/noticia/editar/:id",
+  loginUser,
+  asyncHandler(getEditarNoticiaController)
+);
 router.get(
   "/noticia/deshabilitar/:id",
   asyncHandler(deshabilitarNoticiaController)
@@ -22,6 +26,10 @@ router.get(
 router.get("/estudiantes", function (req, res, next) {
   res.render("estudiantes");
 });
-router.post("/estudiantes", asyncHandler(estudiantesController));
+router.post("estudiantes", asyncHandler());
+router.get("/registrar/estudiantes", function (req, res, next) {
+  res.render("registrar-estudiantes");
+});
+router.post("/registrar/estudiantes", asyncHandler(estudiantesController));
 
 module.exports = router;
