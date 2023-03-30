@@ -5,7 +5,7 @@ const { Noticia, Estudiante } = require("../models");
 const obtenerNoticias = async (limit, offset) => {
   return await Noticia.findAndCountAll({
     attributes: {
-      exclude: ["createdAt", "updatedAt", "deletedAt"],
+      exclude: ["updatedAt", "deletedAt"],
     },
     order: [["id", "DESC"]],
     limit: limit,

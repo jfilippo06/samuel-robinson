@@ -135,7 +135,7 @@
                     <p><%= noticia[i].noticia %></p>
                   </header>
                   <footer>
-                    <p><%= noticia[i].usuario %></p>
+                    <p><%= noticia[i].usuario %> | <%= noticia[i].createdAt %></p>
                     <% if (user) { %>
                     <a href="/noticia/editar/<%= noticia[i].id %>">Editar</a>
                     <a href="/noticia/deshabilitar/<%= noticia[i].id %>">Deshabilitar</a>
