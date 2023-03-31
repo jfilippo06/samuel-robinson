@@ -21,6 +21,7 @@ const estudiantesController = async (req, res) => {
   try {
     const { username, cedula, password, firstname, lastname, email } = req.body;
     await estudiantesService(username, cedula, password, firstname, lastname, email);
+    delete req.session.cedula
     req.flash("success", { msg: "Información registrada" });
     res.redirect("/estudiantes");
   } catch (error) {
