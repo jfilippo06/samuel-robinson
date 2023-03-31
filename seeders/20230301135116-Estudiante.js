@@ -7,8 +7,8 @@ module.exports = {
       "Estudiantes",
       [
         {
-          cedula: 19283467,
           username: "Maria",
+          cedula: 19283467,
           password: "Maria123()",
           firstname: "Maria",
           lastname: "Herrera",
@@ -17,8 +17,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 28467293,
           username: "Valentin",
+          cedula: 28467293,
           password: "Valentin123()",
           firstname: "Valentin",
           lastname: "Alvarez",
@@ -27,8 +27,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 22767545,
           username: "Daniel",
+          cedula: 22767545,
           password: "Daniel123()",
           firstname: "Daniel",
           lastname: "Guetierrez",
@@ -37,8 +37,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 26374833,
           username: "Esmeralda",
+          cedula: 26374833,
           password: "Esmeralda123()",
           firstname: "Esmeralda",
           lastname: "Castro",
@@ -47,8 +47,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 19000123,
           username: "Dubraska",
+          cedula: 19000123,
           password: "Dubraska123()",
           firstname: "Dubraska",
           lastname: "Perez",
@@ -57,8 +57,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 21292292,
           username: "Pedro",
+          cedula: 21292292,
           password: "Pedro123()",
           firstname: "Pedro",
           lastname: "Castillo",
@@ -67,8 +67,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 24474833,
           username: "Flavio",
+          cedula: 24474833,
           password: "Flavio123()",
           firstname: "Flavio",
           lastname: "Salazar",
@@ -77,8 +77,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 19891470,
           username: "Rebeca",
+          cedula: 19891470,
           password: "Rebeca123()",
           firstname: "Rebeca",
           lastname: "Salazar",
@@ -87,8 +87,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 27352162,
           username: "Cesar",
+          cedula: 27352162,
           password: "Cesar123()",
           firstname: "Cesar",
           lastname: "Salazar",
@@ -97,8 +97,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 22929392,
           username: "America",
+          cedula: 22929392,
           password: "America123()",
           firstname: "America",
           lastname: "Salazar",
@@ -107,8 +107,8 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 23232323,
           username: "Jose",
+          cedula: 23232323,
           password: "Jose123()",
           firstname: "Jose",
           lastname: "Salazar",

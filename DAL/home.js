@@ -15,6 +15,7 @@ const obtenerNoticias = async (limit, offset) => {
 
 const crearEstudiantes = async (
   username,
+  cedula,
   password,
   firstname,
   lastname,
@@ -22,12 +23,13 @@ const crearEstudiantes = async (
 ) => {
   const user = await Estudiante.findOne({
     where: {
-      [Op.or]: [{ username: username }, { email: email }],
+      [Op.or]: [{ username: username }, { email: email }, { cedula: cedula }],
     },
   });
   if (user) throw new AppError("Usuario ya existe", 200);
   await Estudiante.create({
     username,
+    cedula,
     password,
     firstname,
     lastname,

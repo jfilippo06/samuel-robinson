@@ -9,12 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      username: {
+        type: Sequelize.STRING
+      },
       cedula: {
         type: Sequelize.INTEGER,
         unique: true,
-      },
-      username: {
-        type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING

@@ -23,12 +23,20 @@ const getNoticiaService = async (page, size) => {
 
 const estudiantesService = async (
   username,
+  cedula,
   password,
   firstname,
   lastname,
   email
 ) => {
-  await crearEstudiantes(username, password, firstname, lastname, email);
+  await crearEstudiantes(
+    username,
+    cedula,
+    password,
+    firstname,
+    lastname,
+    email
+  );
 };
 
 const deshabilitarNoticiaService = async (id) => {

@@ -29,7 +29,8 @@ router.get("/estudiantes", function (req, res, next) {
 });
 router.post("/estudiantes", asyncHandler(consultarCedulaController));
 router.get("/registrar/estudiantes", function (req, res, next) {
-  res.render("registrar-estudiantes");
+  const data = req.session.cedula;
+  res.render("registrar-estudiantes", { data });
 });
 router.post("/registrar/estudiantes", asyncHandler(estudiantesController));
 
