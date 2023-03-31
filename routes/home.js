@@ -28,10 +28,21 @@ router.get("/estudiantes", function (req, res, next) {
   res.render("estudiantes");
 });
 router.post("/estudiantes", asyncHandler(consultarCedulaController));
-router.get("/registrar/estudiantes", function (req, res, next) {
-  const data = req.session.cedula;
-  res.render("registrar-estudiantes", { data });
-});
+router.get(
+  "/registrar/estudiantes",
+  (req, res, next) => {
+    const data = req.session.cedula;
+    if (!data) {
+      req.flash("alert", { msg: "Debe colocar una cedula" });
+      res.redirect(`/estudiantes`);
+    }
+    next();
+  },
+  (req, res, next) => {
+    const data = req.session.cedula;
+    res.render("registrar-estudiantes", { data });
+  }
+);
 router.post("/registrar/estudiantes", asyncHandler(estudiantesController));
 
 module.exports = router;
