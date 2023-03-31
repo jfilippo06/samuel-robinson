@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      cedula: {
+        type: Sequelize.INTEGER,
+        unique: true,
+      },
       username: {
         type: Sequelize.STRING
       },
