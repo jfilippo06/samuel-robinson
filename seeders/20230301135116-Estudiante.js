@@ -8,6 +8,7 @@ module.exports = {
       [
         {
           username: "Maria",
+          cedula: 19283467,
           password: "Maria123()",
           firstname: "Maria",
           lastname: "Herrera",
@@ -17,6 +18,7 @@ module.exports = {
         },
         {
           username: "Valentin",
+          cedula: 28467293,
           password: "Valentin123()",
           firstname: "Valentin",
           lastname: "Alvarez",
@@ -26,6 +28,7 @@ module.exports = {
         },
         {
           username: "Daniel",
+          cedula: 22767545,
           password: "Daniel123()",
           firstname: "Daniel",
           lastname: "Guetierrez",
@@ -35,6 +38,7 @@ module.exports = {
         },
         {
           username: "Esmeralda",
+          cedula: 26374833,
           password: "Esmeralda123()",
           firstname: "Esmeralda",
           lastname: "Castro",
@@ -44,6 +48,7 @@ module.exports = {
         },
         {
           username: "Dubraska",
+          cedula: 19000123,
           password: "Dubraska123()",
           firstname: "Dubraska",
           lastname: "Perez",
@@ -53,6 +58,7 @@ module.exports = {
         },
         {
           username: "Pedro",
+          cedula: 21292292,
           password: "Pedro123()",
           firstname: "Pedro",
           lastname: "Castillo",
@@ -62,6 +68,7 @@ module.exports = {
         },
         {
           username: "Flavio",
+          cedula: 24474833,
           password: "Flavio123()",
           firstname: "Flavio",
           lastname: "Salazar",
@@ -71,6 +78,7 @@ module.exports = {
         },
         {
           username: "Rebeca",
+          cedula: 19891470,
           password: "Rebeca123()",
           firstname: "Rebeca",
           lastname: "Salazar",
@@ -80,6 +88,7 @@ module.exports = {
         },
         {
           username: "Cesar",
+          cedula: 27352162,
           password: "Cesar123()",
           firstname: "Cesar",
           lastname: "Salazar",
@@ -89,6 +98,7 @@ module.exports = {
         },
         {
           username: "America",
+          cedula: 22929392,
           password: "America123()",
           firstname: "America",
           lastname: "Salazar",
@@ -98,6 +108,7 @@ module.exports = {
         },
         {
           username: "Jose",
+          cedula: 23232323,
           password: "Jose123()",
           firstname: "Jose",
           lastname: "Salazar",

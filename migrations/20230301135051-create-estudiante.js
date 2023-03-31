@@ -12,6 +12,10 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
+      cedula: {
+        type: Sequelize.INTEGER,
+        unique: true,
+      },
       password: {
         type: Sequelize.STRING
       },

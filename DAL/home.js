@@ -5,7 +5,7 @@ const { Noticia, Estudiante } = require("../models");
 const obtenerNoticias = async (limit, offset) => {
   return await Noticia.findAndCountAll({
     attributes: {
-      exclude: ["createdAt", "updatedAt", "deletedAt"],
+      exclude: ["updatedAt", "deletedAt"],
     },
     order: [["id", "DESC"]],
     limit: limit,
@@ -15,6 +15,7 @@ const obtenerNoticias = async (limit, offset) => {
 
 const crearEstudiantes = async (
   username,
+  cedula,
   password,
   firstname,
   lastname,
@@ -22,12 +23,13 @@ const crearEstudiantes = async (
 ) => {
   const user = await Estudiante.findOne({
     where: {
-      [Op.or]: [{ username: username }, { email: email }],
+      [Op.or]: [{ username: username }, { email: email }, { cedula: cedula }],
     },
   });
   if (user) throw new AppError("Usuario ya existe", 200);
   await Estudiante.create({
     username,
+    cedula,
     password,
     firstname,
     lastname,
@@ -51,9 +53,19 @@ const getEditarNoticia = async (id) => {
   });
 };
 
+const consultarCedula = async (cedula) => {
+  const data = await Estudiante.findOne({
+    where: {
+      cedula: Number.parseInt(cedula),
+    },
+  });
+  if (data) throw new AppError("Cedula ya existe", 200);
+};
+
 module.exports = {
   obtenerNoticias,
   crearEstudiantes,
   deshabilitarNoticia,
   getEditarNoticia,
+  consultarCedula,
 };

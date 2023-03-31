@@ -3,6 +3,7 @@ const {
   estudiantesService,
   deshabilitarNoticiaService,
   getEditarNoticiaService,
+  consultarCedulaService,
 } = require("../services/home");
 
 const getNoticiaController = async (req, res) => {
@@ -18,13 +19,14 @@ const getNoticiaController = async (req, res) => {
 
 const estudiantesController = async (req, res) => {
   try {
-    const { username, password, firstname, lastname, email } = req.body;
-    await estudiantesService(username, password, firstname, lastname, email);
+    const { username, cedula, password, firstname, lastname, email } = req.body;
+    await estudiantesService(username, cedula, password, firstname, lastname, email);
+    delete req.session.cedula
     req.flash("success", { msg: "Información registrada" });
     res.redirect("/estudiantes");
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/estudiantes");
+    res.redirect("/registrar/estudiantes");
   }
 };
 
@@ -51,9 +53,22 @@ const getEditarNoticiaController = async (req, res) => {
   }
 };
 
+const consultarCedulaController = async (req, res) => {
+  try {
+    const { cedula } = req.body;
+    await consultarCedulaService(cedula);
+    req.session.cedula = cedula;
+    res.redirect('/registrar/estudiantes')
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect(`/estudiantes`);
+  }
+};
+
 module.exports = {
   getNoticiaController,
   estudiantesController,
   deshabilitarNoticiaController,
   getEditarNoticiaController,
+  consultarCedulaController,
 };

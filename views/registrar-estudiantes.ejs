@@ -4,24 +4,24 @@
     <title>Admin</title>
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../../css/all.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/lightbox.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/flexslider.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/lightbox.css" />
+    <link rel="stylesheet" type="text/css" href="../css/flexslider.css" />
+    <link rel="stylesheet" type="text/css" href="../css/owl.carousel.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="../../css/owl.theme.default.css"
+      href="../css/owl.theme.default.css"
     />
-    <link rel="stylesheet" type="text/css" href="../../css/jquery.rateyo.css" />
-    <link rel="stylesheet" type="text/css" href="../../inner-page-style.css" />
-    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery.rateyo.css" />
+    <link rel="stylesheet" type="text/css" href="../inner-page-style.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="../../images/logo.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/logo.jpg" type="image/x-icon" />
   </head>
   <body>
     <div
@@ -72,7 +72,11 @@
                 </ul>
               </div>
               <div class="login-block">
-                <a href="/auth/logout">Cerrar sesión</a>
+                <% if (user) { %>
+                  <a href="/auth/logout">Cerrar sesión</a>
+                <% } else {%>
+                  <a href="/auth/login">Iniciar sesión</a>
+                <% }%>
               </div>
             </div>
           </div>
@@ -82,20 +86,22 @@
           <div class="container">
             <div style="display: flex">
               <a href="/">
-                <img src="../../images/logo.jpg" alt="" style="height: 90px" />
+                <img src="../images/logo.jpg" alt="" style="height: 90px" />
               </a>
               <h1 style="padding: 15px">Escuela Técnica Samuel Robinson</h1>
             </div>
             <div class="nav-wrap">
               <nav class="nav-desktop">
                 <ul class="menu-list">
-                  <li><a href="/admin/noticia">Noticias</a></li>
-                  <li class="menu-parent">
-                    Reporte
-                    <ul class="sub-menu">
-                      <li><a href="/admin/estudiante/reporte-csv">Reporte csv</a></li>
-                      <li><a href="/admin/estudiante/reporte-pdf">Reporte pdf</a></li>
-                    </ul>
+                  <% if (user) { %>
+                    <li><a href="/admin/noticia">Admin</a></li>
+                  <% } %>
+                  <li><a href="/noticia">Noticias</a></li>
+                  <li><a href="/estudiantes">Estudiantes</a></li>
+                  <li>
+                    <a href="http://localhost/login/index.php"
+                      >Entorno Virtual</a
+                    >
                   </li>
                 </ul>
               </nav>
@@ -110,44 +116,28 @@
         </div>
       </header>
 
-      <div class="page-content" style="margin-top: -60px">
-        <div class="container" style="color: black ;">
-            <h1 style="font-size:30px ;">Lista de estudiantes</h1>
-            <% if (prev) { %>
-              <button><a href="<%= prev %>">Anterior</a></button>
-            <% } %>
-            <% if (next) { %>
-              <button><a href="<%= next %>">Siguiente</a></button>
-            <% } %>
-            <br>
-            <button><a href="/admin/estudiante/pdf">Generar reporte</a></button>
-            <br>
-            <table class="table" style="font-size: 16px;">
-              <thead>
-                <tr>
-                  <th scope="col">Nombre de usuario</th>
-                  <th scope="col">Cedula</th>
-                  <th scope="col">Primer nombre</th>
-                  <th scope="col">Apellido</th>
-                  <th scope="col">Correo electronico</th>
-                  <th scope="col">Deshabilitar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% for(let i=0; i < estudiante.length; i++) { %>
-                  <tr>
-                      <td><%= estudiante[i].username %></td>
-                      <td><%= estudiante[i].cedula %></td>
-                      <td><%= estudiante[i].firstname %></td>
-                      <td><%= estudiante[i].lastname %></td>
-                      <td><%= estudiante[i].email %></td>
-                      <td><a href="/admin/estudiante/deshabilitar-pdf/<%= estudiante[i].id %>">Deshabilitar</a></td>
-                  </tr>
-                <% } %>
-              </tbody>
-            </table>
+      <section class="contact-page-section" style="margin-top: -30px;">
+        <div class="container">
+          <div class="people-info-wrap">
+            <h2>Formulario</h2>
+            <%- include('message/alert-h1') %> 
+            <%- include('message/success-h1') %>
+            <p>Ingreso de estudiantes para el entorno virtual</p>
+            <form action="/registrar/estudiantes" method="post">
+              <span>
+              <input type="text" autofocus placeholder="Nombre de usuario" name="username" class="input- name" required style="margin-bottom: 15px;">
+              <input type="number" placeholder="Cedula" value="<%= data %>" name="cedula" class="input- name"  required style="margin-bottom: 15px;">
+              <input type="password" placeholder="Contraseña" name="password" class="input- name" required style="margin-bottom: 15px;">
+              <input type="text" placeholder="Primer nombre" name="firstname" class="input- name" required style="margin-bottom: 15px;">
+              <input type="text" placeholder="Apellido" name="lastname" class="input- name" required>
+              <input type="email" placeholder="Correo electronico" name="email" class="input- name" required>
+              </span>
+              <input type="submit" value="Registrar">
+            </form>
+          </div>
+  
         </div>
-      </div>
+      </section>
 
       <footer
         class="page-footer"
@@ -195,26 +185,26 @@
     </div>
     <script
       type="text/javascript"
-      src="../../javascripts/jquery-3.3.1.min.js"
+      src="../javascripts/jquery-3.3.1.min.js"
     ></script>
-    <script type="text/javascript" src="../../javascripts/lightbox.js"></script>
-    <script type="text/javascript" src="../../javascripts/all.js"></script>
+    <script type="text/javascript" src="../javascripts/lightbox.js"></script>
+    <script type="text/javascript" src="../javascripts/all.js"></script>
     <script
       type="text/javascript"
-      src="../../javascripts/isotope.pkgd.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="../../javascripts/owl.carousel.js"
+      src="../javascripts/isotope.pkgd.min.js"
     ></script>
     <script
       type="text/javascript"
-      src="../../javascripts/jquery.flexslider.js"
+      src="../javascripts/owl.carousel.js"
     ></script>
     <script
       type="text/javascript"
-      src="../../javascripts/jquery.rateyo.js"
+      src="../javascripts/jquery.flexslider.js"
     ></script>
-    <script type="text/javascript" src="../../javascripts/custom.js"></script>
+    <script
+      type="text/javascript"
+      src="../javascripts/jquery.rateyo.js"
+    ></script>
+    <script type="text/javascript" src="../javascripts/custom.js"></script>
   </body>
 </html>
