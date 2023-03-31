@@ -3,6 +3,7 @@ const {
   estudiantesService,
   deshabilitarNoticiaService,
   getEditarNoticiaService,
+  consultarCedulaService,
 } = require("../services/home");
 
 const getNoticiaController = async (req, res) => {
@@ -51,9 +52,21 @@ const getEditarNoticiaController = async (req, res) => {
   }
 };
 
+const consultarCedulaController = async (req, res) => {
+  try {
+    const { cedula } = req.body;
+    await consultarCedulaService(cedula);
+    res.redirect('/registrar/estudiantes')
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect(`/estudiantes`);
+  }
+};
+
 module.exports = {
   getNoticiaController,
   estudiantesController,
   deshabilitarNoticiaController,
   getEditarNoticiaController,
+  consultarCedulaController,
 };

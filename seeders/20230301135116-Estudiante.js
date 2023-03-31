@@ -77,7 +77,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cedula: 27333727,
+          cedula: 19891470,
           username: "Rebeca",
           password: "Rebeca123()",
           firstname: "Rebeca",

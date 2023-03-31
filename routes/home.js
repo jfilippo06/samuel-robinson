@@ -4,6 +4,7 @@ const {
   estudiantesController,
   deshabilitarNoticiaController,
   getEditarNoticiaController,
+  consultarCedulaController,
 } = require("../controllers/home");
 var router = express.Router();
 const asyncHandler = require("../middlewares/async-handler");
@@ -26,7 +27,7 @@ router.get(
 router.get("/estudiantes", function (req, res, next) {
   res.render("estudiantes");
 });
-router.post("estudiantes", asyncHandler());
+router.post("/estudiantes", asyncHandler(consultarCedulaController));
 router.get("/registrar/estudiantes", function (req, res, next) {
   res.render("registrar-estudiantes");
 });

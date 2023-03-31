@@ -51,9 +51,19 @@ const getEditarNoticia = async (id) => {
   });
 };
 
+const consultarCedula = async (cedula) => {
+  const data = await Estudiante.findOne({
+    where: {
+      cedula: Number.parseInt(cedula),
+    },
+  });
+  if (data) throw new AppError("Cedula ya existe", 200);
+};
+
 module.exports = {
   obtenerNoticias,
   crearEstudiantes,
   deshabilitarNoticia,
   getEditarNoticia,
+  consultarCedula,
 };

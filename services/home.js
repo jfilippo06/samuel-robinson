@@ -3,6 +3,7 @@ const {
   crearEstudiantes,
   deshabilitarNoticia,
   getEditarNoticia,
+  consultarCedula,
 } = require("../DAL/home");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -38,9 +39,14 @@ const getEditarNoticiaService = async (id) => {
   return await getEditarNoticia(id);
 };
 
+const consultarCedulaService = async (cedula) => {
+  await consultarCedula(cedula);
+};
+
 module.exports = {
   getNoticiaService,
   estudiantesService,
   deshabilitarNoticiaService,
   getEditarNoticiaService,
+  consultarCedulaService,
 };
